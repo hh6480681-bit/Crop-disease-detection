@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Disease Detection</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            background: #f0f5f0;
+        }
+
+        .container {
+            background: white;
+            padding: 25px;
+            margin: 50px auto;
+            width: 380px;
+            border-radius: 12px;
+            box-shadow: 0px 0px 15px rgba(0,0,0,0.2);
+        }
+
+        h2 {
+            color: green;
+        }
+
+        .upload-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: green;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        img {
+            margin-top: 15px;
+            width: 220px;
+            height: 220px;
+            border-radius: 10px;
+            object-fit: cover;
+            display: none;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: blue;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 16px;
+            color: #333;
+            text-align: left;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>🌿 Crop Disease Detection</h2>
+
+    <form method="post" action="/predict" enctype="multipart/form-data">
+
+        <label class="upload-btn">
+            Choose Image
+            <input type="file" name="file" id="fileInput" required>
+        </label>
+
+        <br>
+
+        <!-- Image Preview BEFORE upload -->
+        <img id="preview">
+
+        <br>
+        <button type="submit">Predict</button>
+    </form>
+
+    <!-- Show Uploaded Image AFTER prediction -->
+    {% if image_file %}
+        <img src="{{ url_for('uploaded_file', filename=image_file) }}" style="display:block;">
+    {% endif %}
+
+    <!-- Prediction Result -->
+    {% if prediction %}
+        <div id="result">
+            <h3>{{ prediction | safe }}</h3>
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    const fileInput = document.getElementById("fileInput");
+    const preview = document.getElementById("preview");
+
+    fileInput.onchange = function () {
+        const file = fileInput.files[0];
+
+        if (file) {
+            preview.src = URL.createObjectURL(file);
+            preview.style.display = "block";
+        }
+    };
+</script>
+
+</body>
+</html>
