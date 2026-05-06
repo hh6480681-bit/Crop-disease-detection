@@ -17,6 +17,8 @@ Flask
 TensorFlow / Keras
 OpenCV
 HTML, CSS
+
+
 📁 Project Structure
 Crop-disease-detection/
 │── app.py
@@ -28,6 +30,9 @@ Crop-disease-detection/
 ├── templates/
 ├── static/
 ├── uploads/
+
+
+
 ⚙️ Installation
 Clone the repository:
 git clone https://github.com/your-username/Crop-disease-detection.git
@@ -44,6 +49,8 @@ python app.py
 Open browser and go to:
 
 http://127.0.0.1:5000/
+
+
 📊 Model Details
 Model Type: Convolutional Neural Network (CNN)
 Framework: TensorFlow / Keras
